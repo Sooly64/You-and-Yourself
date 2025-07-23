@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class playerScript : MonoBehaviour
 {
@@ -127,7 +129,7 @@ public class playerScript : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, terminalVelocity);
         }
     }
-    /* ========== TRIGGER FUNCTIONS ========== */
+    /* ========== TRIGGER AND COLLISION FUNCTIONS ========== */
     // Enter Trigger for all objects
     void OnTriggerEnter2D(Collider2D col) {
         // Set the appropriate flag based on which machine we entered
@@ -146,6 +148,11 @@ public class playerScript : MonoBehaviour
         }
         if (col.CompareTag("Grower")) {
             isInGrower = false;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.CompareTag("Spike")) {
+            resetScene();
         }
     }
     /* ========== STATE CONTROL FUNCTIONS ========== */
@@ -392,5 +399,11 @@ public class playerScript : MonoBehaviour
         // Only allow growing if there's space in all directions
         // You might want to adjust this based on which directions you want to check
         return canGrowRight && canGrowLeft && canGrowUp && canGrowDown;
+    }
+
+    void resetScene() {
+        Debug.Log("You died!");
+        // Reload the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
