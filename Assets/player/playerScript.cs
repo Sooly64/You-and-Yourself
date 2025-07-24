@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class playerScript : MonoBehaviour
@@ -151,9 +150,7 @@ public class playerScript : MonoBehaviour
         }
     }
     void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.CompareTag("Spike")) {
-            resetScene();
-        }
+        
     }
     /* ========== STATE CONTROL FUNCTIONS ========== */
     void determineState() {
@@ -401,9 +398,4 @@ public class playerScript : MonoBehaviour
         return canGrowRight && canGrowLeft && canGrowUp && canGrowDown;
     }
 
-    void resetScene() {
-        Debug.Log("You died!");
-        // Reload the current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
 }
