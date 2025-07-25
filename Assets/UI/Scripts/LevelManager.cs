@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Scenes")]
     [SerializeField] private string MainMenuSceneName = "MainMenu";
-    [SerializeField] private string[] LevelSceneNames = {"SampleScene"};
+    [SerializeField] private string[] LevelSceneNames = {"Level1"};
     
     /* Level Transition Functions */
     public void LoadMainMenu() {
